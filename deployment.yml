@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:latest
+          image: "yossefazozz/argocd_lab:28"
           ports:
             - containerPort: 80
 
