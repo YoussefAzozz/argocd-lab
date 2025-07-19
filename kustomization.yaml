@@ -1,5 +1,4 @@
 # argocd-lab/kustomization.yaml
 resources:
   - deployment.yml
-  - service.yml
-
+  - service_clusterIP.yml
