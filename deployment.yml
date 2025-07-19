@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: "yossefazozz/argocd_lab:28"
+          image: "yossefazozz/argocd_lab:31"
           ports:
             - containerPort: 80
 
