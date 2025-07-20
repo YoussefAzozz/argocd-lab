@@ -1,0 +1,6 @@
+# argocd-lab/kustomization.yaml
+resources:
+  - deployment.yml
+  - service_clusterIP.yml
+commonLabels:
+  app: myapp
