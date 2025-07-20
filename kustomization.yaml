@@ -2,3 +2,5 @@
 resources:
   - deployment.yml
   - service_clusterIP.yml
+commonLabels:
+  app: myapp
