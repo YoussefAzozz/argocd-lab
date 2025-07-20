@@ -9,8 +9,8 @@ patchesStrategicMerge:
   - patch.yml
 
 images:
-  - name: nginx
-    newTag: "1.25"
+  - name: yossefazozz/argocd_lab
+    newTag: "36"
 
 commonLabels:
   env: dev
