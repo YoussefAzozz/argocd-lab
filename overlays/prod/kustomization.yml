@@ -10,7 +10,7 @@ patchesStrategicMerge:
 
 images:
   - name: yossefazozz/argocd_lab
-    newTag: "36"
+    newTag: "43"
 
 commonLabels:
   env: dev
