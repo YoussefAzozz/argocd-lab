@@ -6,7 +6,7 @@ resources:
   - ../../
 
 patchesStrategicMerge:
-  - patch.yaml
+  - patch.yml
 
 images:
   - name: nginx
