@@ -51,4 +51,16 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
 ---
 
 ## 📂 Repository Structure
+shared_lib_jenkins/
+├── argocd-lab/ # Kubernetes manifests & ArgoCD application configurations
+│ ├── dev/ # Dev environment manifests
+│ ├── stag/ # Stag environment manifests
+│ └── prod/ # Prod environment manifests
+│
+├── vars/ # Jenkins Shared Library scripts
+│ ├── deploy.groovy # Handles environment-based deployment logic
+│ └── utils.groovy # (Optional) Helper functions for pipelines
+│
+├── Jenkinsfile # (Optional) Example pipeline using shared library
+└── README.md # Project documentation
 
