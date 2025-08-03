@@ -22,8 +22,21 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
 
 - **Dynamic Environment Deployment**
   - `dev` → Deploys to Development namespace.
-  - `stage` → Deploys to Staging namespace.
+  - `stag` → Deploys to Staging namespace.
   - `prod` → Deploys to Production namespace.
+
+- **Branch-to-Environment Mapping**
+  - Each Git branch triggers a specific environment deployment:
+    | Branch Name Pattern  | Target Environment | K8s Namespace |
+    |---------------------|-------------------|---------------|
+    | `dev`               | Development       | `dev`         |
+    | `stag`              | Staging           | `stag`        |
+    | `prod`              | Production        | `prod`        |
+
+  **Example:**  
+  - Pushing to `dev` branch → Deploys automatically to the **Dev environment**.  
+  - Pushing to `stag` branch → Deploys automatically to the **Staging environment**.  
+  - Pushing to `prod` branch → Deploys automatically to the **Production environment**.
 
 - **ArgoCD Integration**
   - Jenkins updates the **GitOps repository** with the latest manifests.
@@ -37,7 +50,7 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
 
 ## 🏗️ CI/CD Workflow
 
-1. **Developer pushes code** to any branch or opens a PR.
+1. **Developer pushes code** to `dev`, `stag`, or `prod` branch.
 2. **Jenkins Multibranch Pipeline** runs automatically:
    - Builds and tests the application.
    - Builds and pushes Docker images to the registry.
@@ -54,7 +67,7 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
 shared_lib_jenkins/
 ├── argocd-lab/ # Kubernetes manifests & ArgoCD application configurations
 │ ├── dev/ # Dev environment manifests
-│ ├── stag/ # Stag environment manifests
+│ ├── stage/ # Stage environment manifests
 │ └── prod/ # Prod environment manifests
 │
 ├── vars/ # Jenkins Shared Library scripts
@@ -63,4 +76,3 @@ shared_lib_jenkins/
 │
 ├── Jenkinsfile # (Optional) Example pipeline using shared library
 └── README.md # Project documentation
-
