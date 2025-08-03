@@ -1,0 +1,55 @@
+@Library('shared_lib') _
+
+pipeline {
+  agent none  // Disable default agent to force each stage to pick explicitly
+
+  environment {
+    DOCKER_IMAGE = 'yossefazozz/jenkins_ivolve'  // Docker image name with build number
+    DOCKER_CREDENTIALS_ID = '39efdf06-f686-4219-8117-a9efd32f0c16'  // Jenkins credential ID
+    k8s_server_id = 'k8s-server'
+  }
+
+  stages {
+    stage('Test') {
+      agent { label 'vm-1' }  // Maven & app build on the agent
+      steps {
+        unitTests()
+      }
+    }
+
+    stage('Build') {
+      agent { label 'vm-1' }
+      steps {
+        buildApp()
+      }
+    }
+
+    stage('Docker') {
+      agent { label 'vm-1' }  // Docker must run on the agent with Docker installed
+      steps {
+        buildAndPushImage(DOCKER_IMAGE, DOCKER_CREDENTIALS_ID,"dev")
+      }
+    }
+
+    stage('stash file') {
+      agent { label 'vm-1' }  // SonarQube analysis on the same agent
+      steps {
+        stash_file()
+      }
+    }
+
+    stage('edit_deployment') {
+      agent { label 'jenkins-controller' }  // kubectl runs on the controller
+      steps {
+        update_deployment("dev")
+      }
+    }
+
+    stage('Deploy') {
+      agent { label 'jenkins-controller' }  // kubectl runs on the controller
+      steps {
+          deployToK8s("dev-token", k8s_server_id, "dev")
+    }
+  }
+}
+}
