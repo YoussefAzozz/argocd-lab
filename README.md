@@ -1,8 +1,12 @@
-  # 🚀 Jenkins Multibranch CI/CD with ArgoCD for Kubernetes Environments
-  
-  **Project Type:** DevOps | GitOps | CI/CD Automation  
-  **Author:** Yossef Azozz  
-  **Purpose:** Demonstrate a fully automated **multi-environment CI/CD pipeline** using **Jenkins Multibranch Pipeline + ArgoCD** for Kubernetes deployments.
+<h1 align="center">🚀 Jenkins Multibranch CI/CD with ArgoCD for Kubernetes Environments</h1>
+
+<p align="center">
+  <b>Project Type:</b> DevOps | GitOps | CI/CD Automation <br>
+  <b>Author:</b> Yossef Azozz <br>
+  <b>Purpose:</b> Demonstrate a fully automated <b>multi-environment CI/CD pipeline</b> using 
+  <b>Jenkins Multibranch Pipeline + ArgoCD</b> for Kubernetes deployments.
+</p>
+
 
 ---
 
