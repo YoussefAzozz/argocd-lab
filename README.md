@@ -18,7 +18,7 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
 
 ---
 
-## ✨ Key Features
+## <h2>✨ Key Features</h2>
 
 - **Multibranch Jenkins Pipeline**
   - Automatically triggers for new branches and PRs.
@@ -52,7 +52,7 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
 
 ---
 
-## 🏗️ CI/CD Workflow
+## <h2>🏗️ CI/CD Workflow</h2>
 
 1. **Developer pushes code** to `dev`, `stag`, or `prod` branch.
 2. **Jenkins Multibranch Pipeline** runs automatically:
@@ -66,8 +66,8 @@ The pipeline dynamically selects the **correct Kubernetes manifests** based on *
    - Deploys to the corresponding **Kubernetes namespace**.
 
 ---
-
-## 📂 Repository Structure
+##<h3>📂 Repository Structure</h3>
+```plaintext
 shared_lib_jenkins/
 ├── argocd-lab/ # Kubernetes manifests & ArgoCD application configurations
 │ ├── dev/ # Dev environment manifests
@@ -75,8 +75,10 @@ shared_lib_jenkins/
 │ └── prod/ # Prod environment manifests
 │
 ├── vars/ # Jenkins Shared Library scripts
-│ ├── deploy.groovy # Handles environment-based deployment logic
-│ └── utils.groovy # (Optional) Helper functions for pipelines
-│
+│ ├── unitTests.groovy # Run unit Tests based on the environment type(dev,stage,prod)
+│ └── buildApp.groovy # build the java application using mvn clean package
+│ └── build_Scan__PushImage.groovy # Build and scan the docker image from any vulnerabilites and push it to the DockerHub
+│ └── edit_deployment_argocd.groovy # edit the image tag in the deployment manifest
+| └── push_to_argo.groovy after editting , commit the changes to the github where the ArgoCD listens for any changes
 ├── Jenkinsfile # (Optional) Example pipeline using shared library
 └── README.md # Project documentation
